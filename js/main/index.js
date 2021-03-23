@@ -1,9 +1,15 @@
+initialized = false;
+
 $(document).ready(function () {
     //Toggle fullscreen
     $(".chat-bot-icon").click(function (e) {
         $(this).children('img').toggleClass('hide');
         $(this).children('svg').toggleClass('animate');
         $('.chat-screen').toggleClass('show-chat');
+        if (!initialized) {
+            respond('Hi, How are you?', ['support', 'contact', 'help'], initialize = true);
+            initialized = true;
+        }
     });
     $('.chat-mail button').click(function () {
         $('.chat-mail').addClass('hide');
@@ -17,8 +23,9 @@ $(document).ready(function () {
         $('.chat-session-end').removeClass('hide');
         $('.chat-header-option').addClass('hide');
     });
-    $('.chat-body').append(createTypingEffect('you'));
-    $('.chat-body').append(createText('you', 'Yes! this is working'));
-    $('.chat-body').append(createTypingEffect('you'));
-    $('.chat-body').append(createText('me', 'Cool!'));
+    //$('.chat-body').append(createTypingEffect('you'));
+    //$('.chat-body').append(createText('you', 'Yes! this is working'));
+    //$('.chat-body').append(createTypingEffect('you'));
+    //$('.chat-body').append(createText('me', 'Cool!'));
+    // $('.chat-body').append(createChoices(['me', 'Hi', 'help', 'Bye']));
 });

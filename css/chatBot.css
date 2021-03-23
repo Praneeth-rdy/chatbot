@@ -108,6 +108,21 @@
     align-self: flex-start;
     display: table;
 }
+.chat-screen .chat-body .chat-bubble.choice {
+    background-image: linear-gradient(to right, #673ab7, #813bcb, #9e38de, #bc32ef, #dc22ff);
+    color: #fff;
+    border-radius: 15px 15px 15px 15px;
+    margin: 4px;
+    text-align: center;
+    cursor: pointer;
+    align-self: flex-start;
+    display: table;
+    transition: box-shadow 0.2s ease-in-out;
+}
+.chat-screen .chat-body .chat-bubble.choice:hover {
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.2s ease-in-out;
+}
 .chat-screen .chat-body .chat-bubble.me {
     background-image: linear-gradient(to right, #FFFFFF, #FFFFFF, #FFFFFF, #FFFFFF, #FFFFFF);
     color: #888ea8;

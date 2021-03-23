@@ -2,16 +2,13 @@
 function createText(party, content) {
     var text = document.createElement('div');
     text.textContent = content;
-    if (party == 'me') {
-        text.classList.add('chat-bubble', 'me');
-    } else if (party == 'you') {
-        text.classList.add('chat-bubble', 'you');
-    }
+    // party can be 'me', 'you'
+    text.classList.add('chat-bubble', party);
     return text;
 }
 
 function createTypingEffect(party) {
-    
+
     const animate1 = document.createElementNS("http://www.w3.org/2000/svg", "animate");
     animate1.setAttribute('attributeName', 'cy');
     animate1.setAttribute('calcMode', 'spline');
@@ -55,13 +52,82 @@ function createTypingEffect(party) {
     effect.appendChild(circle1);
     effect.appendChild(circle2);
     effect.appendChild(circle3);
-    
+
     var div = document.createElement('div');
     div.appendChild(effect);
     if (party == 'me') {
         div.classList.add('chat-bubble', 'me');
-    } else if (party == 'you') {
+    } else {
         div.classList.add('chat-bubble', 'you');
     }
     return div;
+}
+
+function createChoices(choices) {
+    let columns = [], rows = []
+    for (let choice of choices) {
+        let col = document.createElement('div');
+        col.classList.add('col-4', 'chat-bubble', 'choice');
+        col.textContent = choice;
+        col.addEventListener('click', function () {
+            clickedChoice(choice);
+        });
+        columns.push(col);
+    }
+    for (i = 0; i < (columns.length); i += 2) {
+        var tempRow = document.createElement('div');
+        tempRow.classList.add('row');
+        tempRow.appendChild(columns[i]);
+        try {
+            tempRow.appendChild(columns[i + 1]);
+        } catch (error) {
+
+        }
+        rows.push(tempRow);
+    }
+
+
+    mainDiv = document.createElement('div');
+    mainDiv.classList.add('container', 'chat-bubble', 'pt-0', 'pl-3');
+    for (let row of rows) {
+        mainDiv.appendChild(row);
+    }
+    return mainDiv;
+}
+
+
+
+
+// functions
+
+function clickedChoice(choice) {
+    switch (choice) {
+        case 'help':
+            console.log('came into help');
+            break;
+        default:
+            console.log('default');
+            break;
+    }
+}
+
+function addTypingEffect(delay, callback) {
+    $('.chat-body').append(createTypingEffect());
+    setTimeout(function () {
+        $('.chat-body > div').last().remove();
+        callback()
+    }, delay);
+}
+
+function respond(text, options, initialize = false) {
+    let delay1 = 900, delay2 = 700
+    if (initialize) {
+        delay1 = 1200;
+    }
+    addTypingEffect(delay1, () => {
+        $('.chat-body').append(createText('you', text));
+        addTypingEffect(delay2, () => {
+            $('.chat-body').append(createChoices(options));
+        });
+    });
 }
