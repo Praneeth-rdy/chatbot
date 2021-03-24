@@ -1,7 +1,11 @@
 // function which adds the text to the chat window
 function createText(party, content) {
     var text = document.createElement('div');
-    text.textContent = content;
+    if (typeof (content) == 'string') {
+        text.textContent = content;
+    } else {
+        text.appendChild(content)
+    }
     // party can be 'me', 'you'
     text.classList.add('chat-bubble', party);
     return text;
@@ -101,14 +105,39 @@ function createChoices(choices) {
 // functions
 
 function clickedChoice(choice) {
+    addUserText(choice);
     switch (choice) {
-        case 'help':
+        // first layer options
+        case 'contact':
             console.log('came into help');
+            respond(content = 'Thank you for approaching us!');
+            respond(content = 'Please mail your concern to quantifierschd@gmail.com')
+            break;
+        case 'courses':
+            console.log('came into help');
+            respond(content = 'You need help?')
+            break;
+        case 'resources':
+            console.log('came into help');
+            respond(content = 'You need help?')
+            break;
+        case 'blogs':
+            console.log('came into help');
+            respond(content = 'You need help?')
+            break;
+        // second layer options
+        case 'option':
+            console.log('came into help');
+            respond(content = 'You need help?')
             break;
         default:
             console.log('default');
             break;
     }
+}
+
+function addUserText(content) {
+    $('.chat-body').append(createText('me', content));
 }
 
 function addTypingEffect(delay, callback) {
@@ -119,15 +148,17 @@ function addTypingEffect(delay, callback) {
     }, delay);
 }
 
-function respond(text, options, initialize = false) {
+function respond(content, options, initialize = false) {
     let delay1 = 900, delay2 = 700
     if (initialize) {
         delay1 = 1200;
     }
     addTypingEffect(delay1, () => {
-        $('.chat-body').append(createText('you', text));
-        addTypingEffect(delay2, () => {
-            $('.chat-body').append(createChoices(options));
-        });
+        $('.chat-body').append(createText('you', content));
+        if (options) {
+            addTypingEffect(delay2, () => {
+                $('.chat-body').append(createChoices(options));
+            });
+        }
     });
 }
