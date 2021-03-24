@@ -190,7 +190,7 @@ function addUserText(content) {
     }, 2000);
 }
 
-function addTypingEffect(delay, callback) {
+function addTypingEffect(delay, callback=()=>{}) {
     $('.chat-body').append(createTypingEffect());
     setTimeout(function () {
         $('.chat-body > div').last().remove();
