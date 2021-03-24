@@ -7,7 +7,7 @@ $(document).ready(function () {
         $(this).children('svg').toggleClass('animate');
         $('.chat-screen').toggleClass('show-chat');
         if (!initialized) {
-            respond('Hi, How are you?', ['contact', 'courses', 'resources', 'blogs'], initialize = true);
+            respond('Hi, How are you?', ['Contact', 'Courses', 'Resources', 'Blogs'], initialize = true);
             initialized = true;
         }
     });

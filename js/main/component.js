@@ -106,7 +106,7 @@ function createChoices(choices) {
 
 function clickedChoice(choice) {
     addUserText(choice);
-    switch (choice) {
+    switch (choice.toLowerCase()) {
         // first layer options
         case 'contact':
             console.log('came into help');
@@ -125,6 +125,7 @@ function clickedChoice(choice) {
             console.log('came into help');
             respond(content = 'You need help?')
             break;
+        
         // second layer options
         case 'option':
             console.log('came into help');
@@ -138,6 +139,10 @@ function clickedChoice(choice) {
 
 function addUserText(content) {
     $('.chat-body').append(createText('me', content));
+    $(".chat-body").animate({
+        scrollTop: $(
+            '.chat-body').get(0).scrollHeight
+    }, 2000);
 }
 
 function addTypingEffect(delay, callback) {
@@ -152,6 +157,10 @@ function respond(content, options, initialize = false) {
     let delay1 = 900, delay2 = 700
     if (initialize) {
         delay1 = 1200;
+        let dayList = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+        let date = new Date();
+        day = dayList[date.getDay()]
+        $('#timestamp').text(day + ', ' + date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }));
     }
     addTypingEffect(delay1, () => {
         $('.chat-body').append(createText('you', content));
