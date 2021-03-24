@@ -128,7 +128,7 @@ function clickedChoice(choice) {
             setTimeout(function () {
                 respond(content = 'Thank you!');
                 setTimeout(function () {
-                    // window.location.href = '/plans/';
+                    window.location.href = '/plans/';
                 }, delay + 1000);
             }, delay);
             break;
@@ -145,7 +145,7 @@ function clickedChoice(choice) {
             setTimeout(function () {
                 respond(content = 'Thank you!');
                 setTimeout(function () {
-                    // window.location.href = '/blogs/academic/';
+                    window.location.href = '/blogs/academic/';
                 }, delay + 1000);
             }, delay);
             break;
@@ -154,7 +154,7 @@ function clickedChoice(choice) {
             setTimeout(function () {
                 respond(content = 'Thank you!');
                 setTimeout(function () {
-                    // window.location.href = '/blogs/general/';
+                    window.location.href = '/blogs/general/';
                 }, delay + 1000);
             }, delay);
             break;
@@ -163,7 +163,7 @@ function clickedChoice(choice) {
             setTimeout(function () {
                 respond(content = 'Thank you!');
                 setTimeout(function () {
-                    // window.location.href = '/free_resources/#youtube/';
+                    window.location.href = '/free_resources/#youtube/';
                 }, delay + 1000);
             }, delay);
             break;
@@ -172,7 +172,7 @@ function clickedChoice(choice) {
             setTimeout(function () {
                 respond(content = 'Thank you!');
                 setTimeout(function () {
-                    // window.location.href = '/free_resources/#books/';
+                    window.location.href = '/free_resources/#books/';
                 }, delay + 1000);
             }, delay);
             break;
@@ -194,7 +194,7 @@ function addTypingEffect(delay, callback) {
     $('.chat-body').append(createTypingEffect());
     setTimeout(function () {
         $('.chat-body > div').last().remove();
-        // messageAudio.play();
+        messageAudio.play();
         callback()
     }, delay);
 }
