@@ -1,3 +1,5 @@
+// uncomment window.location in switch and audio.play
+
 let src = './audio/recieved.mp3';
 let messageAudio = new Audio(src);
 messageAudio.volume = 0.1;
@@ -109,31 +111,70 @@ function createChoices(choices) {
 // functions
 
 function clickedChoice(choice) {
+    let delay = 1200;
     addUserText(choice);
     switch (choice.toLowerCase()) {
         // first layer options
         case 'contact':
-            console.log('came into help');
-            respond(content = 'Thank you for approaching us!');
-            respond(content = 'Please mail your concern to quantifierschd@gmail.com')
+            // To run the functions one after the other
+            // The delay also compensates the whole the time taken in respond function(typing and adding text)
+            respond(content = 'Please email your concern to quantifierschd@gmail.com or fill the contact form of homepage.');
+            setTimeout(function () {
+                respond(content = 'Thank you!');
+            }, delay);
             break;
         case 'courses':
-            console.log('came into help');
-            respond(content = 'You need help?')
+            respond(content = 'You will be redirected to our courses page shortly');
+            setTimeout(function () {
+                respond(content = 'Thank you!');
+                setTimeout(function () {
+                    // window.location.href = '/plans/';
+                }, delay + 1000);
+            }, delay);
             break;
         case 'resources':
-            console.log('came into help');
-            respond(content = 'You need help?')
+            respond(content = 'What are you looking for in resources?', options = ['Youtube Videos', 'Featured Books']);
             break;
         case 'blogs':
-            console.log('came into help');
-            respond(content = 'You need help?')
+            respond(content = 'Which kind of blogs are you searching for?', options = ['Academic', 'General']);
             break;
 
         // second layer options
-        case 'option':
-            console.log('came into help');
-            respond(content = 'You need help?')
+        case 'academic':
+            respond(content = 'You will be redirected to our academic blogs page shortly');
+            setTimeout(function () {
+                respond(content = 'Thank you!');
+                setTimeout(function () {
+                    // window.location.href = '/blogs/academic/';
+                }, delay + 1000);
+            }, delay);
+            break;
+        case 'general':
+            respond(content = 'You will be redirected to our general blogs page shortly');
+            setTimeout(function () {
+                respond(content = 'Thank you!');
+                setTimeout(function () {
+                    // window.location.href = '/blogs/general/';
+                }, delay + 1000);
+            }, delay);
+            break;
+        case 'youtube videos':
+            respond(content = 'You will be redirected to our youtube resources page shortly');
+            setTimeout(function () {
+                respond(content = 'Thank you!');
+                setTimeout(function () {
+                    // window.location.href = '/free_resources/#youtube/';
+                }, delay + 1000);
+            }, delay);
+            break;
+        case 'featured books':
+            respond(content = 'You will be redirected to our featured books page shortly');
+            setTimeout(function () {
+                respond(content = 'Thank you!');
+                setTimeout(function () {
+                    // window.location.href = '/free_resources/#books/';
+                }, delay + 1000);
+            }, delay);
             break;
         default:
             console.log('default');
@@ -153,7 +194,7 @@ function addTypingEffect(delay, callback) {
     $('.chat-body').append(createTypingEffect());
     setTimeout(function () {
         $('.chat-body > div').last().remove();
-        messageAudio.play();
+        // messageAudio.play();
         callback()
     }, delay);
 }
