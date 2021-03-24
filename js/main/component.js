@@ -1,3 +1,7 @@
+let src = './audio/recieved.mp3';
+let messageAudio = new Audio(src);
+messageAudio.volume = 0.1;
+
 // function which adds the text to the chat window
 function createText(party, content) {
     var text = document.createElement('div');
@@ -125,7 +129,7 @@ function clickedChoice(choice) {
             console.log('came into help');
             respond(content = 'You need help?')
             break;
-        
+
         // second layer options
         case 'option':
             console.log('came into help');
@@ -149,6 +153,7 @@ function addTypingEffect(delay, callback) {
     $('.chat-body').append(createTypingEffect());
     setTimeout(function () {
         $('.chat-body > div').last().remove();
+        messageAudio.play();
         callback()
     }, delay);
 }
